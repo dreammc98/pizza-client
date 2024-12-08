@@ -10,7 +10,6 @@ type Item = FilterCheckboxProps;
 interface Props {
   title: string;
   items: Item[];
-  defaultItems?: Item[];
   limit?: number;
   searchInputPlaceholder?: string;
   className?: string;
@@ -23,8 +22,7 @@ interface Props {
 export const CheckboxFiltersGroup = ({
   title,
   items,
-  defaultItems,
-  limit = 5,
+  limit = 6,
   searchInputPlaceholder = "Поиск...",
   className,
   selectedIds,
@@ -35,9 +33,9 @@ export const CheckboxFiltersGroup = ({
   const [showAll, setShowAll] = useState(false);
   const [searchValue, setSearchValue] = useState("");
 
-  const filteredItems = items.filter((item) => {
-    console.log(item.text, "search: ", searchValue);
+  const limitedList = items.slice(0, limit);
 
+  const filteredItems = items.filter((item) => {
     return item.text.toLowerCase().includes(searchValue.toLowerCase());
   });
 
@@ -49,7 +47,7 @@ export const CheckboxFiltersGroup = ({
         {...Array(limit)
           .fill(0)
           .map((_, index) => (
-            <div key={index} className="w-full mb-4 h-6 bg-gray-200 rounded-[8px] animate-pulse" />
+            <div key={index} className="w-[80%] mb-4 h-6 bg-gray-200 rounded-[8px] animate-pulse" />
           ))}
 
         <div className="w-28 h-4 bg-gray-200 rounded-[8px] animate-pulse" />
@@ -72,7 +70,7 @@ export const CheckboxFiltersGroup = ({
       )}
 
       <div className="flex flex-col gap-4 max-h-96 pr-2 overflow-auto scrollbar">
-        {(showAll ? filteredItems : defaultItems || filteredItems).map((item) => (
+        {(showAll ? filteredItems : limitedList).map((item) => (
           <FilterCheckbox
             onCheckedChange={() => onClickCheckbox?.(item.value)}
             checked={selectedIds?.has(item.value)}

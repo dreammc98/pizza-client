@@ -4,7 +4,7 @@ const currentIndex = 0;
 
 export const Categories = () => {
   return (
-    <ul className="inline-flex bg-gray-200 gap-1 rounded-2xl p-[6px]">
+    <ul className="flex bg-gray-100 gap-1 rounded-2xl p-[6px] ">
       {foodOptions.map((item, i) => (
         <li
           key={i}

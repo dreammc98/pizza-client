@@ -26,7 +26,7 @@ export const Header = () => {
         </div>
 
         <div className="text-[#FE5F00] gap-4 flex ">
-          <Button variant={"outline"} className=" outline outline-1 font-semibold border-none">
+          <Button variant={"outline"} className="font-semibold ">
             <User size={16} />
             Войти
           </Button>

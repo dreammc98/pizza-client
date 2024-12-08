@@ -8,7 +8,10 @@ type Props = {
 export const TopBar = ({ className }: Props) => {
   return (
     <div
-      className={cn("sticky top-0 py-5 inline-flex items-end justify-between w-full", className)}
+      className={cn(
+        "sticky top-2 mb-8  inline-flex items-end justify-between w-full z-50",
+        className
+      )}
     >
       <Categories />
       <SortPopup />
